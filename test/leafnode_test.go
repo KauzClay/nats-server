@@ -583,11 +583,11 @@ func TestLeafNodeLoop(t *testing.T) {
 	leaf1Send("PING\r\n")
 	leaf1Expect(pongRe)
 
-	leaf1Send("LS+ lds.foo\r\n")
+	leaf1Send("LS+ $lds.foo\r\n")
 	expectNothing(t, lc1)
 
 	// Same loop detection subscription from same client
-	leaf1Send("LS+ lds.foo\r\n")
+	leaf1Send("LS+ $lds.foo\r\n")
 	expectNothing(t, lc1)
 
 	lc2 := createLeafConn(t, opts.LeafNode.Host, opts.LeafNode.Port)
@@ -598,7 +598,7 @@ func TestLeafNodeLoop(t *testing.T) {
 	leaf2Expect(pongRe)
 
 	// Same loop detection subscription from different client
-	leaf2Send("LS+ lds.foo\r\n")
+	leaf2Send("LS+ $lds.foo\r\n")
 	leaf2Expect(regexp.MustCompile(
 		"-ERR 'Loop detected for leafnode account=\".G\". " +
 			"Delaying attempt to reconnect for .*"))

@@ -45,7 +45,7 @@ const leafnodeTLSInsecureWarning = "TLS certificate chain and hostname of solici
 const leafNodeReconnectDelayAfterLoopDetected = 30 * time.Second
 
 // Prefix for loop detection subject
-const leafNodeLoopDetectionSubjectPrefix = "lds."
+const leafNodeLoopDetectionSubjectPrefix = "$lds."
 
 type leaf struct {
 	// Used to suppress sub and unsub interest. Same as routes but our audience
